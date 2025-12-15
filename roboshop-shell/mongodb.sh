@@ -12,7 +12,8 @@ N="\e[0m"
 Y="\e[33m"
 
 USERCHECK=$(id -u)
-if[ $? -ne 0 ]
+
+if[ $USERCHECK -ne 0 ]
 then
     echo "$R ERROR :: please run this in the root access $N"
     exit 1
