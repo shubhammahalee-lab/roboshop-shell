@@ -13,9 +13,9 @@ Y="\e[33m"
 
 USERCHECK=$(id -u)
 
-if[ $USERCHECK -ne 0 ]
+if[ "$USERCHECK" -ne 0 ]
 then
-    echo "$R ERROR :: please run this in the root access $N"
+    echo -e "$R ERROR :: please run this in the root access $N"
     exit 1
 fi
 
@@ -23,10 +23,10 @@ VALIDATE(){
 
     if[ $1 -ne 0 ]
     then 
-        echo " instaling $2 :: $R FAILED $N"
+        echo -e " instaling $2 :: $R FAILED $N"
         exit 1
     else
-        echo " instaling $2 :: $G success $N"
+        echo -e " instaling $2 :: $G success $N"
     fi
 
 }
