@@ -1,9 +1,10 @@
 #!/bin/bash
 
 LOGSDIR=/home/centos/shellscript-logs
+mkdir -p $LOGSDIR
  
 DATE=$(date +%F_%H-%M-%S)
-SCRIPT_NAME=(basename $0)
+SCRIPT_NAME=$(basename $0)
 
 LOGFILE=$LOGSDIR/$SCRIPT_NAME-$DATE.log
 R="\e[31m"
@@ -13,7 +14,7 @@ Y="\e[33m"
 
 USERCHECK=$(id -u)
 
-if[ "$USERCHECK" -ne 0 ]
+if [ "$USERCHECK" -ne 0 ]
 then
     echo -e "$R ERROR :: please run this in the root access $N"
     exit 1
@@ -21,7 +22,7 @@ fi
 
 VALIDATE(){
 
-    if[ $1 -ne 0 ]
+    if [ $1 -ne 0 ]
     then 
         echo -e " instaling $2 :: $R FAILED $N"
         exit 1
