@@ -32,27 +32,27 @@ VALIDATE(){
 
 }
 
-cp mongo.repo /etc/yum.repos.d/mongo.repo &>>LOGFILE
+cp mongo.repo /etc/yum.repos.d/mongo.repo &>>$LOGFILE
 
 VALIDATE $? "copy mongo.repo into yum.repos.d"
 
-yum install mongodb-org -y &>>LOGFILE
+yum install mongodb-org -y &>>$LOGFILE
 
 VALIDATE $? "mongodb-org"
 
-systemctl enable mongod &>>LOGFILE
+systemctl enable mongod &>>$LOGFILE
 
 VALIDATE $? "enabling mongod"
 
-systemctl start mongod &>>LOGFILE
+systemctl start mongod &>>$LOGFILE
 
 VALIDATE $? "starting mongod"
 
-sed -i "s/127.0.0.1/0.0.0.0/" /etc/mongod.conf &>>LOGFILE
+sed -i "s/127.0.0.1/0.0.0.0/" /etc/mongod.conf &>>$LOGFILE
 
 VALIDATE $? "Updating mongod.conf"
 
-systemctl restart mongod &>>LOGFILE
+systemctl restart mongod &>>$LOGFILE
 
 VALIDATE $? "RE-starting mongod"
 
