@@ -157,7 +157,7 @@ systemctl enable catalogue &>>$LOGFILE
 systemctl start catalogue &>>$LOGFILE
 VALIDATE $? "Catalogue service start"
 
-cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>>$LOGFILE
+cp /home/centos/roboshop-shell/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>>$LOGFILE
 yum install mongodb-org-shell -y &>>$LOGFILE
 
 mongo --host 172.31.27.74 </app/schema/catalogue.js &>>$LOGFILE
