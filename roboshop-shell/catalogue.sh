@@ -1,6 +1,7 @@
 #!/bin/bash
 
 LOGSDIR=/home/centos/shellscript-logs
+
 mkdir -p $LOGSDIR
  
 DATE=$(date +%F_%H-%M-%S)
@@ -32,28 +33,28 @@ VALIDATE(){
 
 }
 
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>LOGFILE
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$LOGFILE
 
 VALIDATE $? "successfully get node js setup"
 
-yum install nodejs -y &>>LOGFILE
+yum install nodejs -y &>>$LOGFILE
 
 VALIDATE $? "get nodejs"
 
-useradd roboshop &>>LOGFILE
+useradd roboshop &>>$LOGFILE
 if [ $? -eq 1 ];then
 echo "user already exists"
 fi
 
 VALIDATE $? "adding user"
 
-mkdir /app &>>LOGFILE
+mkdir /app &>>$LOGFILE
 if [ $? -eq 1 ];then
 echo "directory already exists"
 fi
 VALIDATE $? "creating directory for application"
 
-curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>>LOGFILE
+curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>>$LOGFILE
 
 VALIDATE $? "get application"
 
@@ -61,39 +62,39 @@ cd /app
 
 VALIDATE $? " go to app directory"
 
-unzip /tmp/catalogue.zip &>>LOGFILE
+unzip /tmp/catalogue.zip &>>$LOGFILE
 
 VALIDATE $? "unzip directory for application"
 
-cd /app &>>LOGFILE
+cd /app &>>$LOGFILE
 
 VALIDATE $? "goto app directory for application"
 
-npm install &>>LOGFILE
+npm install &>>$LOGFILE
 
 VALIDATE $? "npm for application"
 
-systemctl daemon-reload &>>LOGFILE
+systemctl daemon-reload &>>$LOGFILE
 
 VALIDATE $? "reaload deamon for application"
 
-systemctl enable catalogue &>>LOGFILE
+systemctl enable catalogue &>>$LOGFILE
 
 VALIDATE $? "enable service for application"
 
-systemctl start catalogue &>>LOGFILE
+systemctl start catalogue &>>$LOGFILE
 
 VALIDATE $? "start service for application"
 
-cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>>LOGFILE
+cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>>$LOGFILE
 
 VALIDATE $? "copy mongo.repo for application"
 
-yum install mongodb-org-shell -y &>>LOGFILE
+yum install mongodb-org-shell -y &>>$LOGFILE
 
 VALIDATE $? "mongoclient  for application"
 
-mongo --host MONGODB-SERVER-IPADDRESS </app/schema/catalogue.js &>>LOGFILE
+mongo --host MONGODB-SERVER-IPADDRESS </app/schema/catalogue.js &>>$LOGFILE
 
 VALIDATE $? "enabling catalogue for application"
 
