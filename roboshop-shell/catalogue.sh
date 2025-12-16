@@ -149,7 +149,7 @@ VALIDATE $? "Unzip catalogue"
 npm install &>>$LOGFILE
 VALIDATE $? "NPM install"
 
-cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service &>>$LOGFILE
+cp /home/centos/roboshop-shell/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service &>>$LOGFILE
 VALIDATE $? "Copy service file"
 
 systemctl daemon-reload &>>$LOGFILE
