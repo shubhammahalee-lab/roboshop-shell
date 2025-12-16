@@ -160,6 +160,6 @@ VALIDATE $? "Catalogue service start"
 cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>>$LOGFILE
 yum install mongodb-org-shell -y &>>$LOGFILE
 
-mongo --host MONGODB-SERVER-IPADDRESS </app/schema/catalogue.js &>>$LOGFILE
+mongo --host 172.31.27.74 </app/schema/catalogue.js &>>$LOGFILE
 VALIDATE $? "Mongo schema load"
 
