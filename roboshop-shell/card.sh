@@ -48,7 +48,7 @@ cd /app
 npm install &>>$LOGFILE
 VALIDATE $? "NPM install"
 
-cp /home/centos/roboshop-shell/roboshop-shell/ /etc/systemd/system/cart.service
+cp /home/centos/roboshop-shell/roboshop-shell/cart.service /etc/systemd/system/cart.service
 VALIDATE $? "Copy service file"
 
 systemctl daemon-reload &>>$LOGFILE
